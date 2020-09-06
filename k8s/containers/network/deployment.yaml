@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: network
+  labels:
+    app: network
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: network
+  template:
+    metadata:
+      labels:
+        app: network
+    spec:
+      containers:
+      - command:
+        - 'python3'
+        - 'app.py'
+        name: network
+        image: network-local:latest
+        ports:
+        - containerPort: 5000
+        imagePullPolicy: IfNotPresent

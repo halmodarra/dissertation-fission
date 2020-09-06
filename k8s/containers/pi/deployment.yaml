@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pi
+  labels:
+    app: pi
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: pi
+  template:
+    metadata:
+      labels:
+        app: pi
+    spec:
+      containers:
+      - command:
+        - 'python3'
+        - 'app.py'
+        name: pi
+        image: pi-local:latest
+        ports:
+        - containerPort: 5000
+        imagePullPolicy: IfNotPresent
