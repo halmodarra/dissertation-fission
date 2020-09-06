@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: prometheus-pv-data
+  annotations:
+    pv.beta.kubernetes.io/gid: "65534"
+spec:
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  claimRef:
+     namespace: fission
+     name: fission-prometheus-alertmanager
+  hostPath:
+    path: "/home/ubuntu/fission/data"
